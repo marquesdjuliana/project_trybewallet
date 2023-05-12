@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { loginSubmit } from '../redux/actions'; // importe a action loginSubmit que vai salvar o email no estado global do Redux
+import './Login.css';
 
 class Login extends Component {
   constructor(props) {

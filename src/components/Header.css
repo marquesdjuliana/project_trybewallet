@@ -1,0 +1,27 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0099ff;
+  color: white;
+  padding: 20px;
+}
+
+.email {
+  font-size: 18px;
+}
+
+.wallet {
+  font-size: 24px;
+  display: flex;
+  align-items: baseline;
+}
+
+.wallet-text {
+  margin-right: 5px;
+}
+
+.currency {
+  font-size: 18px;
+  margin-left: 5px;
+}
