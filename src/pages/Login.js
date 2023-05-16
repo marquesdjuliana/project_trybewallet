@@ -5,8 +5,8 @@ import { addEmail } from '../redux/actions'; // importe a action addEmail que va
 import './Login.css';
 
 class Login extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       email: '',
       password: '',
