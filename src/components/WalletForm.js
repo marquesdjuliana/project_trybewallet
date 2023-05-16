@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchCurrencies } from '../redux/actions';
+import { fetchCurrencies, fetchToAddExpense } from '../redux/actions';
 import './WalletForm.css';
 
 class WalletForm extends Component {
@@ -22,13 +22,22 @@ class WalletForm extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  // Crie um manipulador de eventos para o botão "Adicionar despesa" que irá despacha fetchToAddExpense:
+  handleAddExpense = (e) => {
+    e.preventDefault();
+
+    const { dispatch } = this.props;
+    dispatch(fetchToAddExpense(this.state));
+    this.setState({ value: '', description: '' });
+  };
+
   render() {
     const { currencies } = this.props;
     const { value, currency, method, tag, description } = this.state;
 
     return (
       <div className="formExpenses">
-        <form>
+        <form onSubmit={ this.handleAddExpense }>
           <label>
             Valor:
             <input

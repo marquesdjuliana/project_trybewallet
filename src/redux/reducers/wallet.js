@@ -1,4 +1,4 @@
-import { REQUEST_CURRENCIES } from '../actions';
+import { REQUEST_CURRENCIES, ADD_EXPENSE } from '../actions';
 // Esse reducer será responsável por tratar o todas as informações relacionadas as despesas
 const INITIAL_STATE = {
   currencies: [], // array de string
@@ -12,6 +12,16 @@ function walletReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
   case REQUEST_CURRENCIES:
     return { ...state, currencies: action.payload };
+  case ADD_EXPENSE:
+    console.log(state, action);
+    return {
+      ...state,
+      expenses: [...state.expenses, { id: state.expenses.length, ...action.payload }],
+      total: [...state.expenses, action.payload].reduce(
+        (acc, curr) => acc + +curr.value * +curr.exchangeRates[curr.currency].ask,
+        0,
+      ),
+    };
   default:
     return state;
   }

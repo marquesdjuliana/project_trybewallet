@@ -3,6 +3,8 @@ const ADD_EMAIL = 'ADD_EMAIL';
 
 const REQUEST_CURRENCIES = 'REQUEST_CURRENCIES';
 
+const ADD_EXPENSE = 'ADD_EXPENSE';
+
 const addEmail = (email) => ({
   type: ADD_EMAIL,
   payload: email,
@@ -20,10 +22,22 @@ const fetchCurrencies = () => async (dispatch) => {
   dispatch(requestCurrencies(currencies));
 };
 
+const addExpense = (expense, exchangeRates) => ({
+  type: ADD_EXPENSE,
+  payload: { ...expense, exchangeRates },
+});
+
+const fetchToAddExpense = (expense) => async (dispatch) => {
+  const response = await fetch('https://economia.awesomeapi.com.br/json/all');
+  const data = await response.json();
+  dispatch(addExpense(expense, data));
+};
 export {
   ADD_EMAIL,
   REQUEST_CURRENCIES,
+  ADD_EXPENSE,
   addEmail,
   requestCurrencies,
   fetchCurrencies,
+  fetchToAddExpense,
 };
