@@ -1,19 +1,19 @@
 // Coloque aqui suas actions
-const LOGIN_SUBMIT = 'LOGIN_SUBMIT';
+const ADD_EMAIL = 'ADD_EMAIL';
 
-const INF_CURRENCIES = 'INF_CURRENCIES';
+const REQUEST_CURRENCIES = 'REQUEST_CURRENCIES';
 
-const loginSubmit = (email) => ({
-  type: LOGIN_SUBMIT,
+const addEmail = (email) => ({
+  type: ADD_EMAIL,
   payload: email,
 });
-const infCurrencies = (curencies) => ({
-  type: INF_CURRENCIES,
+const requestCurrencies = (curencies) => ({
+  type: REQUEST_CURRENCIES,
   payload: curencies,
 });
 export {
-  LOGIN_SUBMIT,
-  INF_CURRENCIES,
-  loginSubmit,
-  infCurrencies,
+  ADD_EMAIL,
+  REQUEST_CURRENCIES,
+  addEmail,
+  requestCurrencies,
 };

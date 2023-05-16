@@ -1,4 +1,4 @@
-import { INF_CURRENCIES } from '../actions';
+import { REQUEST_CURRENCIES } from '../actions';
 // Esse reducer será responsável por tratar o todas as informações relacionadas as despesas
 const INITIAL_STATE = {
   currencies: [], // array de string
@@ -10,7 +10,7 @@ const INITIAL_STATE = {
 
 function walletReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
-  case INF_CURRENCIES:
+  case REQUEST_CURRENCIES:
     return { ...state, wallet: action.payload };
   default:
     return state;

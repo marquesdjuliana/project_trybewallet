@@ -5,8 +5,8 @@ class Wallet extends React.Component {
   render() {
     return (
       <div>
-        <p>TrybeWallet</p>
         <Header />
+        <p>TrybeWallet</p>
       </div>
     );
   }

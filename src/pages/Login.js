@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { loginSubmit } from '../redux/actions'; // importe a action loginSubmit que vai salvar o email no estado global do Redux
+import { addEmail } from '../redux/actions'; // importe a action addEmail que vai salvar o email no estado global do Redux
 import './Login.css';
 
 class Login extends Component {
@@ -27,7 +27,7 @@ class Login extends Component {
     if (/\S+@\S+\.\S+/.test(email) && password.length >= lengthSix) {
       const { history, dispatch } = this.props;
       // envie o email para o estado global do Redux
-      dispatch(loginSubmit(email));
+      dispatch(addEmail(email));
 
       // redirecione o usuário para a rota /carteira
       history.push('/carteira');
