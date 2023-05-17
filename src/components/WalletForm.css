@@ -1,11 +1,12 @@
-/* .formExpenses {
-  max-width: 100%;
-  margin: 0 auto;
-  padding: 20px;
+.formExpenses {
+  background-color: #f9f9f9;
   border: 1px solid #ccc;
   border-radius: 5px;
-  background-color: #f9f9f9;
+  margin: 0 auto;
+  max-width: 100%;
+  padding: 20px;
 }
+
 .formExpenses form {
   display: flex;
   flex-direction: column;
@@ -15,25 +16,24 @@
   margin-bottom: 10px;
 }
 
-.formExpenses input[type="text"],
-.formExpenses select {
-  width: 100%;
-  padding: 8px;
+.formExpenses , .formExpenses select {
   border: 1px solid #ccc;
   border-radius: 5px;
+  padding: 8px;
+  width: 100%;
 }
 
 .formExpenses button {
-  padding: 10px 15px;
-  margin-top: 20px;
+  background-color: #4f926b;
   border: none;
   border-radius: 5px;
-  background-color: #4f926b;
-  color: #fff;
-  font-weight: bold;
+  color: white;
   cursor: pointer;
+  font-weight: 700;
+  margin-top: 20px;
+  padding: 10px 15px;
 }
 
 .formExpenses button:hover {
   background-color: #1f5f2d;
-} */
+}

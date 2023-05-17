@@ -1,9 +1,9 @@
-/* .header {
-  display: flex;
-  justify-content: space-between;
+.header {
   align-items: center;
   background-color: #364550;
   color: white;
+  display: flex;
+  justify-content: space-between;
   padding: 10px;
 }
 
@@ -12,9 +12,9 @@
 }
 
 .wallet {
-  font-size: 15px;
-  display: flex;
   align-items: baseline;
+  display: flex;
+  font-size: 15px;
 }
 
 .wallet-text {
@@ -24,4 +24,4 @@
 .currency {
   font-size: 18px;
   margin-left: 5px;
-} */
+}
