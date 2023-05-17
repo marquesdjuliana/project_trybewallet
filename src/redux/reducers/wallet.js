@@ -13,7 +13,6 @@ function walletReducer(state = INITIAL_STATE, action) {
   case REQUEST_CURRENCIES:
     return { ...state, currencies: action.payload };
   case ADD_EXPENSE:
-    console.log(state, action);
     return {
       ...state,
       expenses: [...state.expenses, { id: state.expenses.length, ...action.payload }],
