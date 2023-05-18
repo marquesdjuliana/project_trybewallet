@@ -25,6 +25,7 @@ describe('Login', () => {
     userEvent.type(emailInput, 'test@example.com');
     userEvent.type(passwordInput, 'password');
     userEvent.click(button);
+
     const { location: { pathname } } = history;
     expect(pathname).toBe('/carteira');
     expect(screen.getByText(/despesa total:/i)).toBeInTheDocument();

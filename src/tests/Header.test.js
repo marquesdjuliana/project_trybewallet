@@ -25,7 +25,7 @@ describe('Header component test', () => {
     const mockStore = {
       getState: () => ({
         user: {
-          email,
+          email: 'teste@teste.com',
         },
         wallet: {
           expenses,
