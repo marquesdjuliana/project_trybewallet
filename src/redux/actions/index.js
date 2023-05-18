@@ -29,7 +29,7 @@ const addExpense = (expense, exchangeRates) => ({
   payload: { ...expense, exchangeRates },
 });
 
-const excludeExchange = (expenses) => ({
+const excludeExpense = (expenses) => ({
   type: EXCLUDE_EXPENSES,
   payload: expenses,
 });
@@ -45,7 +45,8 @@ export {
   ADD_EXPENSE,
   EXCLUDE_EXPENSES,
   addEmail,
-  excludeExchange,
+  addExpense,
+  excludeExpense,
   requestCurrencies,
   fetchCurrencies,
   fetchToAddExpense,

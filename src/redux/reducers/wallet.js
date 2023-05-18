@@ -23,7 +23,7 @@ function walletReducer(state = INITIAL_STATE, action) {
       ),
     };
   case EXCLUDE_EXPENSES:
-    // Remove uma despesa do array de despesas no estado com base no 'id' fornecido, ciranod um novo estado com as despesas atualizada.
+    // Remove uma despesa do array de despesas no estado com base no 'id' fornecido, cirando um novo estado com as despesas atualizada.
     return {
       ...state,
       expenses: state.expenses.filter(({ id }) => action.payload.id !== id),
