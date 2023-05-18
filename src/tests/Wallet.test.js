@@ -1,11 +1,12 @@
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { act } from 'react-dom/test-utils';
+import { renderWithRouterAndRedux } from './helpers/renderWith';
 
 import mockData from './helpers/mockData';
-import { renderWithRouterAndRedux } from './helpers/renderWith';
 import Wallet from '../pages/Wallet';
 import WalletForm from '../components/WalletForm';
+import walletReducer from '../redux/reducers/wallet';
 
 describe('Wallet screen test', () => {
   test('Checks for text entries on the Wallet screen', () => {
@@ -49,29 +50,78 @@ describe('Wallet screen test', () => {
 
     expect(global.fetch).toHaveBeenCalledTimes(1);
   });
-  // test('Checks if after clicking the button, the information was entered in the store', async () => {
-  //   jest.spyOn(global, 'fetch');
-  //   const initialState = {
-  //     user: {
-  //       email: '',
-  //     },
-  //     wallet: {
-  //       currencies: [],
-  //       expenses: [],
-  //       editor: false,
-  //       idToEdit: 0,
-  //       total: 0,
-  //     },
-  //   };
+  test('Handles REQUEST_CURRENCIES action', () => {
+    const initialState = {
+      currencies: [],
+      expenses: [],
+      editor: false,
+      idToEdit: 0,
+      total: 0,
+    };
 
-  //   const initialEntries = ['/carteira'];
-  //   const { store } = renderWithRouterAndRedux(
-  //     <WalletForm />,
-  //     { initialEntries, initialState },
-  //   );
-  //   const button = screen.getByRole('button', { name: /adicionar despesa/i });
-  //   act(() => userEvent.click(button));
-  //   expect(global.fetch).toHaveBeenCalled();
-  //   expect(store.getState().wallet.expenses).toHaveLength(0);
-  // });
+    const action = {
+      type: 'REQUEST_CURRENCIES',
+      payload: ['USD', 'EUR', 'BRL'],
+    };
+
+    const newState = walletReducer(initialState, action);
+
+    expect(newState.currencies).toEqual(['USD', 'EUR', 'BRL']);
+  });
+  test('Handles ADD_EXPENSE action', () => {
+    const initialState = {
+      currencies: [],
+      expenses: [],
+      editor: false,
+      idToEdit: 0,
+      total: 0,
+    };
+
+    const action = {
+      type: 'ADD_EXPENSE',
+      payload: {
+        id: 1,
+        value: 10,
+        currency: 'USD',
+        method: 'Dinheiro',
+        tag: 'Alimentação',
+        description: 'Almoço',
+        exchangeRates: {
+          USD: { ask: 5 },
+          EUR: { ask: 6 },
+          BRL: { ask: 7 },
+        },
+      },
+    };
+
+    const newState = walletReducer(initialState, action);
+
+    expect(newState.expenses).toHaveLength(1);
+    expect(newState.expenses[0]).toEqual(action.payload);
+    expect(newState.total).toEqual(50); // Verificar se o total foi calculado corretamente
+  });
+  test('Handles EXCLUDE_EXPENSES action', () => {
+    const initialState = {
+      currencies: [],
+      expenses: [
+        { id: 1, value: 10, currency: 'USD', method: 'Dinheiro', tag: 'Alimentação', description: 'Almoço' },
+        { id: 2, value: 20, currency: 'EUR', method: 'Cartão de crédito', tag: 'Lazer', description: 'Cinema' },
+        { id: 3, value: 30, currency: 'BRL', method: 'Cartão de débito', tag: 'Transporte', description: 'Uber' },
+      ],
+      editor: false,
+      idToEdit: 0,
+      total: 60,
+    };
+
+    const action = {
+      type: 'EXCLUDE_EXPENSES',
+      payload: { id: 2 },
+    };
+
+    const newState = walletReducer(initialState, action);
+
+    expect(newState.expenses).toHaveLength(2);
+    expect(newState.expenses.some((expense) => expense.id === 2)).toBe(false);
+    expect(newState.total).toEqual(60); // Verificar se o total foi recalculado corretamente
+  });
 });
