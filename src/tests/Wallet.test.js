@@ -2,6 +2,7 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { act } from 'react-dom/test-utils';
 import { renderWithRouterAndRedux } from './helpers/renderWith';
+import { UPDATE_EXPENSE } from '../redux/actions';
 
 import mockData from './helpers/mockData';
 import Wallet from '../pages/Wallet';
@@ -123,5 +124,30 @@ describe('Wallet screen test', () => {
     expect(newState.expenses).toHaveLength(2);
     expect(newState.expenses.some((expense) => expense.id === 2)).toBe(false);
     expect(newState.total).toEqual(60);
+  });
+  test('Handles UPDATE_EXPENSE action', () => {
+    const initialState = {
+      expenses: [
+        { id: 1, value: 10 },
+        { id: 2, value: 20 },
+      ],
+    };
+
+    const updatedExpense = {
+      id: 2,
+      value: 30,
+    };
+
+    const action = {
+      type: UPDATE_EXPENSE,
+      payload: [
+        { id: 1, value: 10 },
+        updatedExpense,
+      ],
+    };
+
+    const newState = walletReducer(initialState, action);
+
+    expect(newState.expenses[1].value).toEqual(updatedExpense.value);
   });
 });
