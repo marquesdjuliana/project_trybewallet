@@ -29,13 +29,11 @@ class Header extends Component {
 
 const mapStateToProps = (state) => ({
   email: state.user.email,
-  // total: state.wallet.total,
-  expenses: state.wallet.expenses,
+  ...state.wallet,
 });
 
 Header.propTypes = {
   email: PropTypes.string.isRequired,
-  // total: PropTypes.number.isRequired,
   expenses: PropTypes.arrayOf(PropTypes.shape({
     value: PropTypes.string,
     currency: PropTypes.string,

@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { excludeExpense } from '../redux/actions';
+import { excludeExpense, toEditExpense } from '../redux/actions';
 
 class Table extends Component {
+  // função para buscar por id index editado do expenses;
+  editExpense = (id) => {
+    const { expenses } = this.props;
+    const idToEdit = expenses.findIndex((exp) => exp.id === id);
+    const { dispatch } = this.props;
+    dispatch(toEditExpense(idToEdit));
+  };
+
   render() {
-    const { expenses, dispatch, editExpense } = this.props;
+    const { expenses, dispatch } = this.props;
     console.log(expenses);
     return (
       <div>
@@ -40,7 +48,7 @@ class Table extends Component {
                 <td>
                   <button
                     data-testid="edit-btn"
-                    onClick={ () => editExpense(expense.id) }
+                    onClick={ () => this.editExpense(expense.id) }
                   >
                     Editar
                   </button>
@@ -61,12 +69,11 @@ class Table extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  expenses: state.wallet.expenses,
+  ...state.wallet,
 });
 
 Table.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  editExpense: PropTypes.func.isRequired,
   expenses: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number,
     value: PropTypes.string,

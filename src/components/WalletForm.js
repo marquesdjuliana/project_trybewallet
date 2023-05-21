@@ -1,9 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchCurrencies, fetchToAddExpense, toEditExpense,
+import { fetchCurrencies, fetchToAddExpense,
   upDateExpense } from '../redux/actions';
-import Table from './Table';
 import './WalletForm.css';
 
 class WalletForm extends Component {
@@ -20,22 +19,6 @@ class WalletForm extends Component {
     dispatch(fetchCurrencies());
   }
 
-  // função para buscar por id index editado do expenses;
-  editExpense = (id) => {
-    const { expenses } = this.props;
-    const { value, currency, method,
-      tag, description } = expenses.find((exp) => exp.id === id);
-    this.setState({
-      value,
-      currency,
-      method,
-      tag,
-      description,
-    });
-    const { dispatch } = this.props;
-    dispatch(toEditExpense(id));
-  };
-
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
@@ -46,7 +29,7 @@ class WalletForm extends Component {
 
     const { dispatch, editor, expenses, idToEdit } = this.props;
     if (editor) {
-      expenses[idToEdit] = { ...this.state, id: idToEdit };
+      expenses[idToEdit] = { ...expenses[idToEdit], ...this.state };
       dispatch(upDateExpense(expenses));
     } else {
       dispatch(fetchToAddExpense(this.state));
@@ -126,9 +109,6 @@ class WalletForm extends Component {
           </label>
           <button>{ editor ? 'Editar despesas' : 'Adicionar despesa' }</button>
         </form>
-        <Table
-          editExpense={ this.editExpense }
-        />
       </div>
     );
   }
