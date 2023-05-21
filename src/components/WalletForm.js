@@ -19,6 +19,28 @@ class WalletForm extends Component {
     dispatch(fetchCurrencies());
   }
 
+  componentDidUpdate(prevProps) {
+    const { editor, expenses, idToEdit } = this.props;
+    const id = expenses[idToEdit];
+    if (editor && !prevProps.editor) {
+      this.setState({
+        value: id.value,
+        currency: id.currency,
+        method: id.method,
+        tag: id.tag,
+        description: id.description,
+      });
+    } else if (!editor && prevProps.editor) {
+      this.setState({
+        value: '',
+        currency: 'USD',
+        method: 'Dinheiro',
+        tag: 'Alimentação',
+        description: '',
+      });
+    }
+  }
+
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };

@@ -98,7 +98,7 @@ describe('Wallet screen test', () => {
 
     expect(newState.expenses).toHaveLength(1);
     expect(newState.expenses[0]).toEqual(action.payload);
-    expect(newState.total).toEqual(50); // Verificar se o total foi calculado corretamente
+    expect(newState.total).toEqual(50);
   });
   test('Handles EXCLUDE_EXPENSES action', () => {
     const initialState = {
@@ -122,6 +122,6 @@ describe('Wallet screen test', () => {
 
     expect(newState.expenses).toHaveLength(2);
     expect(newState.expenses.some((expense) => expense.id === 2)).toBe(false);
-    expect(newState.total).toEqual(60); // Verificar se o total foi recalculado corretamente
+    expect(newState.total).toEqual(60);
   });
 });
