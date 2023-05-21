@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import Table from '../components/Table';
-import { excludeExpense } from '../redux/actions';
+import { excludeExpense, toEditExpense } from '../redux/actions';
 import mockData from './helpers/mockData';
 
 describe('Table component test', () => {
@@ -45,5 +45,19 @@ describe('Table component test', () => {
 
     expect(mockStore.dispatch).toHaveBeenCalledTimes(1);
     expect(mockStore.dispatch).toHaveBeenCalledWith(excludeExpense(expenses[0]));
+  });
+
+  test('Dispatches toEditExpense action when edit button is clicked', () => {
+    render(
+      <Provider store={ mockStore }>
+        <Table />
+      </Provider>,
+    );
+
+    const editButton = screen.getByTestId('edit-btn');
+    fireEvent.click(editButton);
+
+    expect(mockStore.dispatch).toHaveBeenCalledTimes(1);
+    expect(mockStore.dispatch).toHaveBeenCalledWith(toEditExpense(0));
   });
 });
