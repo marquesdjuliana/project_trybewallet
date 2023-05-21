@@ -7,6 +7,10 @@ const ADD_EXPENSE = 'ADD_EXPENSE';
 
 const EXCLUDE_EXPENSES = 'EXCLUDE_EXPENSES';
 
+const TO_EDIT_EXPENSE = 'TO_EDIT_EXPENSE';
+
+const UPDATE_EXPENSE = 'UPDATE_EXPENSE';
+
 const addEmail = (email) => ({
   type: ADD_EMAIL,
   payload: email,
@@ -29,25 +33,40 @@ const addExpense = (expense, exchangeRates) => ({
   payload: { ...expense, exchangeRates },
 });
 
-const excludeExpense = (expenses) => ({
-  type: EXCLUDE_EXPENSES,
-  payload: expenses,
-});
-
 const fetchToAddExpense = (expense) => async (dispatch) => {
   const response = await fetch('https://economia.awesomeapi.com.br/json/all');
   const data = await response.json();
   dispatch(addExpense(expense, data));
 };
+
+const excludeExpense = (expenses) => ({
+  type: EXCLUDE_EXPENSES,
+  payload: expenses,
+});
+
+const toEditExpense = (id) => ({
+  type: TO_EDIT_EXPENSE,
+  payload: id,
+});
+
+const upDateExpense = (expenses) => ({
+  type: UPDATE_EXPENSE,
+  payload: expenses,
+});
+
 export {
   ADD_EMAIL,
   REQUEST_CURRENCIES,
   ADD_EXPENSE,
   EXCLUDE_EXPENSES,
+  TO_EDIT_EXPENSE,
+  UPDATE_EXPENSE,
   addEmail,
+  requestCurrencies,
   addExpense,
   excludeExpense,
-  requestCurrencies,
+  toEditExpense,
+  upDateExpense,
   fetchCurrencies,
   fetchToAddExpense,
 };

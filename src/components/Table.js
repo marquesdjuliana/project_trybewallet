@@ -5,8 +5,8 @@ import { excludeExpense } from '../redux/actions';
 
 class Table extends Component {
   render() {
-    const { expenses, dispatch } = this.props;
-
+    const { expenses, dispatch, editExpense } = this.props;
+    console.log(expenses);
     return (
       <div>
         <table>
@@ -40,6 +40,7 @@ class Table extends Component {
                 <td>
                   <button
                     data-testid="edit-btn"
+                    onClick={ () => editExpense(expense.id) }
                   >
                     Editar
                   </button>
@@ -64,6 +65,8 @@ const mapStateToProps = (state) => ({
 });
 
 Table.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  editExpense: PropTypes.func.isRequired,
   expenses: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number,
     value: PropTypes.string,
@@ -72,7 +75,6 @@ Table.propTypes = {
     method: PropTypes.string,
     tag: PropTypes.string,
   })).isRequired,
-  dispatch: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps)(Table);

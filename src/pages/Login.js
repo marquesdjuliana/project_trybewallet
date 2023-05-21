@@ -15,21 +15,21 @@ class Login extends Component {
 
   handleChange = (event) => {
     const { name, value } = event.target;
-    this.setState({ [name]: value });
+    this.setState({ [name]: value }); // Atualiza o estado com os valores dos campos de input
   };
 
   handleSubmit = (event) => {
     event.preventDefault();
     const { email, password } = this.state;
 
-    // verifique se o email e a senha são válidos
+    // Verifique se o email e a senha são válidos
     const lengthSix = 6;
     if (/\S+@\S+\.\S+/.test(email) && password.length >= lengthSix) {
       const { history, dispatch } = this.props;
-      // envie o email para o estado global do Redux
+      // Envia o email para o estado global do Redux usando a action addEmail
       dispatch(addEmail(email));
 
-      // redirecione o usuário para a rota /carteira
+      // Redirecione o usuário para a rota /carteira
       history.push('/carteira');
     }
   };
@@ -37,7 +37,7 @@ class Login extends Component {
   render() {
     const { email, password } = this.state;
     const lengthSix = 6;
-    const isButtonDisabled = !(/\S+@\S+\.\S+/.test(email) && password.length >= lengthSix);
+    const isButtonDisabled = !(/\S+@\S+\.\S+/.test(email) && password.length >= lengthSix); // isButtonDisabled será true se a expressão for falsa (ou seja, o email ou a senha não atendem às condições de validação), e será false se a expressão for verdadeira (ou seja, o email e a senha atendem às condições de validação).
 
     return (
       <form onSubmit={ this.handleSubmit }>

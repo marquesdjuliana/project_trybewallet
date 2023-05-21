@@ -6,9 +6,9 @@ import './Header.css';
 class Header extends Component {
   render() {
     const { email, expenses } = this.props;
-    const totalExpenses = () => {
-      const sum = expenses.reduce((acc, cur) => acc
-        + cur.exchangeRates[cur.currency].ask * +(cur.value), 0);
+    const totalExpenses = () => { // Função que calcula o valor total das despesas
+      const sum = expenses.reduce((acc, curr) => acc
+        + curr.exchangeRates[curr.currency].ask * +(curr.value), 0); // A cada iteração, o valor da despesa é multiplicado pela taxa de câmbio correspondente à moeda da despesa, obtida através de cur.exchangeRates[cur.currency].ask. O resultado acumulado é atualizado na variável sum. No final, o valor total é formatado com duas casas decimais usando o método toFixed.
       return sum.toFixed(2);
     };
     return (
@@ -18,7 +18,6 @@ class Header extends Component {
         </div>
         <div className="wallet">
           <p>{'Despesa total: R$ '}</p>
-          {/* <h2 className="wallet-text" data-testid="total-field">{total.toFixed(2)}</h2> */}
           <h2 className="wallet-text" data-testid="total-field">{totalExpenses()}</h2>
 
           <h2 className="currency" data-testid="header-currency-field">BRL</h2>
