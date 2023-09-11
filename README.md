@@ -30,6 +30,19 @@ Além das habilidades técnicas, este projeto também é uma oportunidade para d
 - Pensamento crítico: analisar os problemas de forma abrangente, considerando diferentes abordagens para lidar com o retorno da API. O pensamento crítico permitiu avaliar as opções disponíveis, considerar os prós e contras e escolher as soluções que melhor atendiam aos requisitos do projeto.
 
 
+## Instalação
+
+Se deseja experimentar o projeto em sua máquina local, siga estas etapas:
+
+1. Clone o repositório:
+   git clone git@github.com:marquesdjuliana/project_trybewallet.git
+2 . Entre na pasta do repositório que você acabou de clonar:
+   cd project_trybewallet
+3. Instale as dependências
+   npm install
+4. Abra o projeto no navegador
+   npm start
+
 Sinta-se à vontade para explorar este projeto, acompanhar meu crescimento e contribuir, se desejar. Se você tiver alguma sugestão, feedback ou quiser trocar conhecimentos, será um prazer conectar com você no LinkedIn!
 
 **# :construction: README em construção! :construction:**
