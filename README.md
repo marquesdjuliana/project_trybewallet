@@ -34,11 +34,11 @@ Se deseja experimentar o projeto em sua máquina local, siga estas etapas:
 
 1. Clone o repositório:
 ```sh
-git clone git@github.com:marquesdjuliana/project_trybewallet.git
+git clone git@github.com:marquesdjuliana/trybewallet.git
 ```
 2. Entre na pasta do repositório:
 ```sh
-cd project_trybewallet 
+cd trybewallet 
 ```
 3. Instale as dependências:
 ```sh
